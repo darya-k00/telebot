@@ -2,11 +2,7 @@ import ptbot
 import os
 from pytimeparse import parse
 from dotenv import load_dotenv
-load_dotenv()
 
-
-tg_token = os.getenv('TG_TOKEN')
-bot = ptbot.Bot(tg_token)
 
 def reply(chat_id, text):
     delay_seconds=parse(text)
@@ -31,6 +27,9 @@ def lalal(chat_id):
     bot.send_message(chat_id, "Время вышло!")
 
 def main():
+    load_dotenv()
+    tg_token = os.getenv('TG_TOKEN')
+    bot = ptbot.Bot(tg_token)
     bot.reply_on_message(reply)
     bot.run_bot()
 
