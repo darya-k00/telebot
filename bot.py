@@ -3,7 +3,6 @@ import os
 from pytimeparse import parse
 from dotenv import load_dotenv
 
-bot = None
 
 def reply(chat_id, text):
     delay_seconds=parse(text)
@@ -27,12 +26,11 @@ def notify_progress(secs_left, delay_seconds, chat_id, message_id):
 def lalal(chat_id):
     bot.send_message(chat_id, "Время вышло!")
 
-def main():
-    global bot 
+def main(): 
     load_dotenv()
     tg_token = os.getenv('TG_TOKEN')
     bot = ptbot.Bot(tg_token)
-    bot.reply_on_message(reply)
+    bot.reply_on_message(reply, bot=bot)
     bot.run_bot()
 
 if __name__=='__main__':
